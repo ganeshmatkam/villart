@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title><img src="assets/img/villart-white.png" width="100px"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-md-8>
+        <ion-card>
+          <ion-card-header style="text-align: center;">
+            Start Building Your Photography Package Now!
+          </ion-card-header>
+          <ion-card-content>
+
+            <ion-segment mode="ios" [(ngModel)]="currentStep" class="segment-ios responsive-segment">
+              <ion-segment-button value="1">
+                Select photography team for your complete event
+              </ion-segment-button>
+              <ion-segment-button value="2">
+                Choose events to create your photography team
+              </ion-segment-button>
+            </ion-segment>
+
+            <div *ngIf="currentStep === '2'">
+              <ion-grid class="form-grid">
+                <ion-row>
+                  Select the type of photography - can select one more more ..
+                </ion-row>
+                <ion-row>
+                  <ion-col col-md-4 *ngFor="let event of events">
+                    <ion-item>
+                      <ion-label>{{event.name}}</ion-label>
+                      <ion-checkbox (click)="eventClick()" [(ngModel)]="event.selected"></ion-checkbox>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+
+            <div>
+              <ion-grid class="form-grid">
+                <ion-row>
+                  1. First select the starting date of the event - If you have multiple dates select first of them
+                </ion-row>
+                <ion-row>
+                  <ion-col col-md-6>
+                    <ion-item>
+                      <ion-label color="primary" floating>Date Of Event</ion-label>
+                      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="dateOfEvent"></ion-datetime>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col col-md-6>
+                    <ion-item>
+                      <ion-label color="primary" floating>Mobile Number</ion-label>
+                      <ion-input type="tel" [(ngModel)]="mobileNo"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="row-title">
+                  2. Select the type of photography - can select one more more - after mouseover click on the box to continue
+                </ion-row>
+                <ion-row>
+                  <ion-col col-sm-3 *ngFor="let ptype of photographyItems">
+                    <ion-card tappable no-shadow [ngClass]="{'selected' : ptype.selected}" (click)="selectPhotography(ptype)">
+                      <div class="card-img">
+                        <img src="{{ptype.icon}}" />
+                      </div>
+                      <ion-card-content>
+                        <ion-card-title>
+                          {{ptype.typeOfSpecialization}}
+                        </ion-card-title>
+                      </ion-card-content>
+                    </ion-card>
+                    <div *ngIf="ptype.selected">
+                      <ion-item>
+                        <!--<ion-label>No Of People</ion-label>-->
+                        <ion-select [(ngModel)]="ptype.teamSize"  (change)="selectChange(ptype)" interface="popover">
+                          <ion-option value="" [disabled]="true"> No Of People </ion-option>
+                          <ion-option value="1">1</ion-option>
+                          <ion-option value="2">2</ion-option>
+                          <ion-option value="3">3</ion-option>
+                          <ion-option value="4">4</ion-option>
+                        </ion-select>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label>No Of Days</ion-label>
+                        <ion-select [(ngModel)]="ptype.days" (change)="selectChange(ptype)" interface="popover">
+                          <ion-option value="" [disabled]="true"> No Of Days </ion-option>
+                          <ion-option value="0.5 Days/4 Hours"> 0.5 Days/4 Hours </ion-option>
+                          <ion-option value="1 Days/8 Hours">1 Days/8 Hours</ion-option>
+                          <ion-option value="1.5 Days/12 Hours">1.5 Days/12 Hours</ion-option>
+                          <ion-option value="2 Days/16 Hours">2 Days/16 Hours</ion-option>
+                          <ion-option value="2.5 Days/20 Hours">2.5 Days/20 Hours</ion-option>
+                          <ion-option value="3 Days/24 Hours">3 Days/24 Hours</ion-option>
+                        </ion-select>
+                      </ion-item>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-md-4 class="price-card">
+        <ion-card>
+          <ion-card-header>
+            <h2 class="main">{{currentStaff}}</h2>
+          </ion-card-header>
+          <ion-card-content>
+            Photographers Found for Online Booking in the budget range of
+            <h4 class="price-range"> {{priceRange}} </h4>
+            <button ion-button color="primary">View All</button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

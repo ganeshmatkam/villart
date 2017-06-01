@@ -1,0 +1,98 @@
+page-home {
+    ion-content.content {
+        background-color: map-get($colors, app-back );
+    }
+    ion-segment.segment.responsive-segment {
+        margin-bottom : 12px;
+        margin-top: 12px;
+        .segment-button {
+            height: auto;
+            white-space: normal;
+            line-height: 2rem;
+            min-height: 48px;
+            padding-top: 12px;
+        }
+    }
+    ion-card.card{
+        box-shadow: none;
+    }
+    ion-row {
+        ion-col {
+            padding: 0.4rem;
+        }
+    }
+    ion-grid.form-grid {
+        ion-row {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            ion-col.col {
+                padding: 2px;
+                ion-card.card {
+                    margin: 0px;
+                    width: 100%;
+                    box-shadow: none;
+                    border: 1px solid gray;
+                    min-width: 168px;
+                    width: 168px;
+                    &.selected {
+                        border: 1px solid map-get($colors, primary);
+                        ion-card-title.card-title {
+                            color: map-get($colors, primary);
+                        }
+                    }
+                    .card-img {
+                        padding-top: 8px;
+                        text-align: center;
+                    }
+                    img {
+                        width: 48px;
+                        display: initial;
+                        // border-radius: 50%;
+                    }
+                    ion-card-content {
+                        padding: 6px;
+                        min-height: 68px;
+                    }
+                    ion-card-title.card-title {
+                        padding: 0px;
+                        font-size: 14px;
+                        padding-top: 8px;
+                        text-align: center;
+                    }
+                    p {
+                        font-size: 12px;
+                        color: map-get($colors, 'dark-hue-2');
+                    }
+                }
+                ion-item.item {
+                    font-size: 15px;
+                    ion-select.select {
+                        max-width: 100%;
+                        width: 100%;
+                        padding: 13px 8px 13px 4px;
+                    }
+                    &.item-select{
+                        padding-left: 4px;
+                    }
+                    &.item-checkbox {
+                        ion-checkbox.checkbox{
+                            margin: 9px 12px 9px 4px
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .price-card {
+        text-align: center;
+        .main {
+            font-size:48px;
+            font-weight: bold;
+            color: map-get($colors, primary);
+        }
+        .price-range {
+            padding: 16px;
+            font-size: 22px;
+        }
+    }
+}
